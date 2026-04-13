@@ -1118,6 +1118,10 @@
                             <input type="text" id="negocio" class="form-control" placeholder="Ej: Restaurante La Casona">
                         </div>
                         <div class="col-12">
+                            <label class="form-label">Correo electrónico</label>
+                            <input type="email" id="correo" class="form-control" placeholder="Tu correo">
+                        </div>
+                        <div class="col-12">
                             <label class="form-label">¿Qué necesitás?</label>
                             <select id="servicio" class="form-select">
                                 <option>Seleccioná un servicio...</option>
@@ -1130,8 +1134,8 @@
                             </select>
                         </div>
                         <div class="col-12">
-                            <label class="form-label">Contame más (opcional)</label>
-                            <textarea id="mensaje" class="form-control" rows="3" placeholder="Descripción de tu negocio, qué querés lograr..."></textarea>
+                            <label class="form-label">Pon tu correo y contame de qué trata tu negocio</label>
+                            <textarea id="mensaje" class="form-control" rows="3" placeholder="Ej: un restaurante, una tienda online, servicios, reservas, etc."></textarea>
                         </div>
                         <div class="col-12">
                             <button class="btn-gold w-100" id="submitBtn" onclick="handleSubmit(event)">
@@ -1264,11 +1268,17 @@
         const nombre = document.getElementById("nombre").value.trim();
         const telefono = document.getElementById("telefono").value.trim();
         const negocio = document.getElementById("negocio").value.trim();
+        const correo = document.getElementById("correo").value.trim();
         const servicio = document.getElementById("servicio").value;
         const mensaje = document.getElementById("mensaje").value.trim();
 
         if (!nombre || !telefono) {
             alert("Por favor completá tu nombre y tu teléfono.");
+            return;
+        }
+
+        if (!correo) {
+            alert("Poné tu correo.");
             return;
         }
 
@@ -1288,6 +1298,7 @@
             nombre: nombre,
             telefono: telefono,
             negocio: negocio,
+            correo: correo,
             servicio: servicio,
             mensaje: mensaje
         })
@@ -1298,6 +1309,7 @@
             document.getElementById("nombre").value = "";
             document.getElementById("telefono").value = "";
             document.getElementById("negocio").value = "";
+            document.getElementById("correo").value = "";
             document.getElementById("servicio").selectedIndex = 0;
             document.getElementById("mensaje").value = "";
 
